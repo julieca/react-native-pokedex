@@ -18,7 +18,8 @@ export const getData = (nextUrl) => {
 
 export const getDataByType = (name) => {
   return async dispatch => {
-    const { pokemon } = (await $axios.get(`${url.getType}/${name}`)).data;
+    console.log(name)
+    const { pokemon } = (await $axios.get(`${url.getType}${name}`)).data;
     const results = pokemon.map(x => x.pokemon)
     dispatch({
       type: GET_DATA,
