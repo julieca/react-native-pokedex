@@ -48,6 +48,7 @@ function detail(state = {
   switch (type) {
     case GET_DETAIL:
       let {
+        id,
         name,
         abilities,
         moves,
@@ -59,6 +60,7 @@ function detail(state = {
       types = types.map(x => x.type.name);
 
       state = {
+        id,
         name,
         abilities,
         moves,

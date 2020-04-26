@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-screensreact-navigation-stackreact-navigation-stack
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
 
 PATH: 
   "C:\Program Files\Java\jre-10.0.1\bin;";C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Java\jdk-10.0.1\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Users\62815\.windows-build-tools\python27\;C:\Users\62815\AppData\Local\Microsoft\WindowsApps;C:\Users\62815\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\62815\AppData\Local\Yarn\bin;C:\Users\62815\AppData\Roaming\npm;C:\sqlite;
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-screensreact-navigation-stackreact-navigation-stack: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65939:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140464:22)
-      at Request.emit (events.js:203:13)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141436:10)
-      at Request.emit (events.js:203:13)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141358:12)
-      at Object.onceWrapper (events.js:291:20)
-      at IncomingMessage.emit (events.js:208:15)
-      at endReadableNT (_stream_readable.js:1161:12)
-      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\62815\AppData\Local\Yarn\Cache\v4\npm-@react-navigation-routers-5.4.0-2fce2a3880e84a110d4eaea317bb7dadee27d57c\node_modules\@react-navigation\routers\src\CommonActions.tsx' -> 'C:\Users\62815\Documents\project-lamar\warungpintar\node_modules\@react-navigation\routers\src\CommonActions.tsx'
 
 npm manifest: 
   {
@@ -37,7 +27,9 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+      "@react-native-community/masked-view": "^0.1.10",
       "@react-navigation/native": "^5.1.6",
+      "@react-navigation/stack": "^5.2.13",
       "axios": "^0.19.2",
       "expo": "^37.0.8",
       "react": "~16.9.0",
@@ -45,6 +37,7 @@ npm manifest:
       "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
       "react-native-elements": "^1.2.7",
       "react-native-gesture-handler": "^1.6.1",
+      "react-native-reanimated": "^1.8.0",
       "react-native-safe-area-context": "^0.7.3",
       "react-native-screens": "^2.7.0",
       "react-native-web": "~0.11.7",
@@ -1239,6 +1232,14 @@ Lockfile:
     integrity sha512-Z5mQF/oQH9CRLilNm1H7h0wjY3dKomWOhuuDehW8UKuLiFp2mWJI1P5N9qwaSraxhcoiVfb9QXwKZru/wBzWMQ==
     dependencies:
       nanoid "^3.0.2"
+  
+  "@react-navigation/stack@^5.2.13":
+    version "5.2.13"
+    resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.2.13.tgz#fa242f28beb8882fde1584cd23b1a9938abc5e17"
+    integrity sha512-bHT9cN5DKNpBHgftIzAM+MoBwWnz2952G5SSctXExQkQ73dwbkV1RnQw8t0MnRZyOpsynhJIdAG+me2QERhAbg==
+    dependencies:
+      color "^3.1.2"
+      react-native-iphone-x-helper "^1.2.1"
   
   "@types/color-name@^1.1.1":
     version "1.1.1"

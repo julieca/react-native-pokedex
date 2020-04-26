@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Home from './Home';
 // import PokemonDetail from './PokemonDetail';
 import { View, Platform } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
 
 
 import { connect } from 'react-redux';

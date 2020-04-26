@@ -11,19 +11,6 @@ import {
 
 import * as url from '../enums/url';
 
-
-// const option = ["normal", "fire", "dark", "physic"];
-// const data = [
-//   {
-//     name: "pokemon?",
-//     imgUrl: demo1
-//   },
-//   {
-//     name: "this is food",
-//     imgUrl: demo2
-//   }
-// ];
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -32,14 +19,17 @@ class Home extends Component {
     }
   }
   componentDidMount() {
-    getTypes();
-    getData();
+    this.props.getTypes();
+    this.props.getData();
   }
 
   static navigationOptions = {
     title: "PokeDex"
   };
 
+  onButtonFilter = () => {
+    // this.props.getDataByType(this.state.filter);
+  }
 
   render() {
     const { navigate } = this.props.navigation
@@ -60,7 +50,9 @@ class Home extends Component {
 
     const renderFilterItem = ({ item, index }) => {
       return (
-        <Picker.Item key={index} label={item} value={item} />
+        <Picker.Item key={index} label={item} value={item}
+          onPress={() => { this.onButtonFilter }}
+        />
 
       )
     }
@@ -80,7 +72,7 @@ class Home extends Component {
             onValueChange={(itemValue, itemIndex) => { this.setState({ filter: itemValue }); getDataByType(this.filter) }}>
             <Picker.Item label="-" value="" />
             <FlatList
-              data={types}
+              data={this.props.types}
               renderItem={renderFilterItem} />
           </Picker>
         </View>
@@ -91,7 +83,7 @@ class Home extends Component {
           justifyContent: "space-between",
           alignItems: "center"
         }}>
-          {list.map((data, i) =>
+          {this.props.data.map((data, i) =>
             <Card key={i}
               title={data.name}
               image={{ uri: url.getImage(data.url.split("pokemon")[1].replace(/\//g, "")) }}
