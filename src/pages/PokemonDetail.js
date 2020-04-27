@@ -18,15 +18,16 @@ const loop = {
 function RenderPokemon(props) {
   const pokemon = props.pokemon;
   return (
-    <Card
-      containerStyle={{ width: "90%" }}
-      imageWrapperStyle={{ height: 300 }}
-      imageStyle={{ height: 300 }}
-      titleStyle={{ textTransform: "capitalize", fontSize: 20 }}
-      title={pokemon.name}
-      image={{ uri: url.getImage(pokemon.id) }}
-    >
-
+    <View >
+      <Card
+        containerStyle={{ width: "90%" }}
+        imageWrapperStyle={{ height: 300 }}
+        imageStyle={{ height: 300 }}
+        titleStyle={{ textTransform: "capitalize", fontSize: 20 }}
+        title={pokemon.name}
+        image={{ uri: url.getImage(pokemon.id) }}
+      >
+      </Card>
       <View style={{
         justifyContent: "space-between",
         alignItems: "center"
@@ -34,9 +35,10 @@ function RenderPokemon(props) {
         {//looping information
           Object.keys(loop).map(k =>
             <View key={k}>
-              <Text style={{ margin: 10, textAlign: "center" }}>
+              <Text style={{ margin: 10, textAlign: "center", color: "black" }}>
                 {loop[k]}
-                <br />
+              </Text>
+              <Text style={{ margin: 10, textAlign: "center" }}>
                 {pokemon[k] && pokemon[k].join(", ")}
               </Text>
             </View>
@@ -45,8 +47,8 @@ function RenderPokemon(props) {
         }
 
       </View>
+    </View>
 
-    </Card>
   );
 
 }
