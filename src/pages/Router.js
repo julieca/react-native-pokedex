@@ -17,8 +17,8 @@ class Route extends Component {
         {/* <Text>JUST SLEEPING</Text> */}
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="PokemonDetail" component={PokemonDetail} />
+            <Stack.Screen name="PokeDex" component={Home} />
+            <Stack.Screen name="Pokemon" component={PokemonDetail} />
             {/* <MenuNavigator /> */}
           </Stack.Navigator>
         </NavigationContainer>

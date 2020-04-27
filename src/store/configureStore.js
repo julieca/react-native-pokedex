@@ -13,12 +13,8 @@ const loggerMiddleware = createLogger();
 
 export default function configureStore(preloadedState) {
   return createStore(
-    // persistCombineReducers(config,{
     rootReducer,
     preloadedState,
-    // }),
     applyMiddleware(thunkMiddleware, loggerMiddleware)
   );
-  // const persistor = persistStore(store);
-  // return {persistor, store};
 }

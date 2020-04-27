@@ -4,6 +4,7 @@ import {
   GET_DATA,
   GET_DETAIL,
   GET_TYPES,
+  GET_DATA_BY_TYPE
 } from '../enums/mutations';
 
 export const getData = (nextUrl) => {
@@ -18,11 +19,10 @@ export const getData = (nextUrl) => {
 
 export const getDataByType = (name) => {
   return async dispatch => {
-    console.log(name)
     const { pokemon } = (await $axios.get(`${url.getType}${name}`)).data;
     const results = pokemon.map(x => x.pokemon)
     dispatch({
-      type: GET_DATA,
+      type: GET_DATA_BY_TYPE,
       payload: { next: null, results }
     })
   }

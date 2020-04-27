@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Picker, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, Button } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 
 import {
   getData,
@@ -24,6 +24,12 @@ class Home extends Component {
     this.props.getData();
   }
 
+  onEndofPage = () => {
+    //checking next for non filter
+    if (this.props.next) {
+      this.props.getData(this.props.next);
+    }
+  }
 
 
   static navigationOptions = {
@@ -33,16 +39,22 @@ class Home extends Component {
   render() {
     const { navigate } = this.props.navigation
     return (
-      <ScrollView>
+      <ScrollView
+        onScroll={(event) => {
+          const scrollY = event.nativeEvent.contentOffset.y;
+          const endPage = event.nativeEvent.contentSize.height - event.nativeEvent.layoutMeasurement.height;
+          if (scrollY === endPage) {
+            this.onEndofPage();
+          }
+        }}
+      >
         {/* types dropdown */}
         <View style={{
-          flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center"
         }}>
           <Picker
             style={{ height: 50, width: "100%" }}
-            // mode="dropdown"
             selectedValue={this.state.filter}
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ filter: itemValue });
@@ -57,7 +69,7 @@ class Home extends Component {
             <Picker.Item label="-" value="" />
             {
               this.props.types.map(k =>
-                <Picker.Item key={k} label={k} value={k} />
+                <Picker.Item key={k} label={k} value={k} style={{ textTransform: "capitalize" }} />
               )
             }
           </Picker>
@@ -65,31 +77,31 @@ class Home extends Component {
 
         {/* list pokemon */}
         <View style={{
-          // flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center"
 
         }}>
-          {this.props.data.map((data, i) =>
-            <TouchableHighlight key={i}
-              onPress={() => navigate('PokemonDetail', { pokemonId: data.url.split("pokemon")[1].replace(/\//g, "") })}
-              style={{ width: "100%" }}
-            >
-              <View>
-                <Card
-                  button={true}
-                  containerStyle={{ width: "90%" }}
-                  imageWrapperStyle={{ height: 300 }}
-                  imageStyle={{ height: 300 }}
-                  title={data.name}
-                  image={{ uri: url.getImage(data.url.split("pokemon")[1].replace(/\//g, "")) }}
-                // onPress={() => navigate('PokemonDetail', { pokemonId: id })}
-                >
-                </Card>
-              </View>
+          {
+            this.props.data.map((data, i) =>
+              <TouchableHighlight key={i}
+                onPress={() => navigate('Pokemon', { pokemonId: data.url.split("pokemon")[1].replace(/\//g, "") })}
+                style={{ width: "100%" }}
+              >
+                <View>
+                  <Card
+                    containerStyle={{ width: "90%" }}
+                    imageWrapperStyle={{ height: 300 }}
+                    imageStyle={{ height: 300 }}
+                    titleStyle={{ textTransform: "capitalize", fontSize: 20 }}
+                    title={data.name}
+                    image={{ uri: url.getImage(data.url.split("pokemon")[1].replace(/\//g, "")) }}
+                  >
+                  </Card>
+                </View>
 
-            </TouchableHighlight>
-          )}
+              </TouchableHighlight>
+            )
+          }
         </View>
       </ScrollView>
     );
@@ -100,12 +112,13 @@ class Home extends Component {
 const mapStateToProps = ({ types = [], list }) => {
   return {
     types,
-    data: list.results
+    data: list.results,
+    next: list.next
   }
 };
 const mapDispatchToProps = dispatch => ({
   getTypes: () => dispatch(getTypes()),
-  getData: () => dispatch(getData()),
+  getData: (next) => dispatch(getData(next)),
   getDataByType: (name) => dispatch(getDataByType(name))
 
 });

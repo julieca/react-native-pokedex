@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import { Card, List, ListItem } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as url from '../enums/url';
 
@@ -17,15 +17,14 @@ const loop = {
 
 function RenderPokemon(props) {
   const pokemon = props.pokemon;
-  console.log("pokemon", pokemon)
-  console.log(loop)
   return (
     <Card
-      featuredTitle={pokemon.name}
-      // title={pokemon.name}
-      // image={{uri:pokemon.image}}
+      containerStyle={{ width: "90%" }}
+      imageWrapperStyle={{ height: 300 }}
+      imageStyle={{ height: 300 }}
+      titleStyle={{ textTransform: "capitalize", fontSize: 20 }}
+      title={pokemon.name}
       image={{ uri: url.getImage(pokemon.id) }}
-
     >
 
       <View style={{
@@ -62,30 +61,23 @@ class PokemonDetail extends Component {
 
   static navigationOptions = {
     title: "pokemon detail"
-    // this.props.data.name
   };
 
   render() {
-    console.log("------------")
-    console.log(this.props)
-    console.log("------------")
-    console.log(this.props.route.params.pokemonId)
-
-
-    // const pokemonId = JSON.stringify(this.props.navigation.getParam('pokemonId', ''));
-    // console.log(pokemonId)
-    if (this.props.data == null) {
+    if (this.props.data.id) {
+      return (
+        <ScrollView>
+          <RenderPokemon pokemon={this.props.data} />
+        </ScrollView>
+      );
+    } else {
       return (
         <ScrollView>
 
         </ScrollView>
       )
     }
-    return (
-      <ScrollView>
-        <RenderPokemon pokemon={this.props.data} />
-      </ScrollView>
-    );
+
   }
 
 }

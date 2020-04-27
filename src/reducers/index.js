@@ -4,7 +4,8 @@ import {
 import {
   GET_DATA,
   GET_DETAIL,
-  GET_TYPES
+  GET_TYPES,
+  GET_DATA_BY_TYPE
 } from '../enums/mutations'
 
 
@@ -29,8 +30,15 @@ function list(state = { results: [] }, action) {
   } = action
   switch (type) {
     case GET_DATA:
+      let { results, next } = payload;
+      if (state.next) {
+        results = state.results.concat(results);
+      }
+      return { results, next };
+    case GET_DATA_BY_TYPE:
       state = payload
       return state;
+
     default:
       return state
   }
